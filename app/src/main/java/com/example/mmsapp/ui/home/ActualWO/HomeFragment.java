@@ -14,11 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,6 +39,7 @@ import com.example.mmsapp.service.SharedPref;
 import com.example.mmsapp.ui.home.ActualWO.adapter.ActualWOHomeAdapter;
 import com.example.mmsapp.ui.home.ActualWO.api.ActualWOAPI;
 import com.example.mmsapp.ui.home.ActualWO.api.response.ActualWOHomeMasterRes;
+import com.example.mmsapp.ui.home.ActualWO.api.response.GetBomTypeRes;
 import com.example.mmsapp.ui.home.ActualWO.model.ActualWOHomeMaster;
 import com.example.mmsapp.ui.home.Manufacturing.ManufacturingActivity;
 import com.google.android.material.textfield.TextInputLayout;
@@ -73,6 +78,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private Calendar startCalendar,endCalendar;
 
     private EditText containerCode;
+    private Spinner spinnertype;
+    private List<GetBomTypeRes> getBomTypeResList;
+    private String typeSelect = "";
+
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -82,9 +91,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         layoutSearchInput = root.findViewById(R.id.layoutSearchInput);
         imvExpand = root.findViewById(R.id.imvDropDown);
         imvReloadPO = root.findViewById(R.id.reloadPO);
+
         imvReloadPO.setOnClickListener(this);
         connectSearchForm(root);
         imvExpand.setOnClickListener(this);
+
+
 
         dialog = new ProgressDialog(getContext(),R.style.AlertDialogCustom);
 
@@ -96,6 +108,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         });
 
         getData(page,false);
+
+        getBomType();
         return root;
     }
 
@@ -116,6 +130,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         edtStartDate = view.findViewById(R.id.edtStartDate);
         edtEndDate = view.findViewById(R.id.edtEndDate);
         btnSearch = view.findViewById(R.id.btnSearch);
+        spinnertype = view.findViewById(R.id.spinnertype);
+
         edtStartDate.setOnClickListener(this);
         edtEndDate.setOnClickListener(this);
         btnSearch.setOnClickListener(this);
@@ -127,6 +143,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         String productName = edtProductName.getText().toString();
         String model = edtModel.getText().toString();
         String startDate = edtStartDate.getText().toString();
+        String type = typeSelect;
         if(startDate.equals(Constants.START_DATE)){
             startDate=null;
         }
@@ -134,12 +151,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         if(endDate.equals(Constants.END_DATE)){
             endDate = null;
         }
-        searchPO(1,false,poNo,product,productName,model,startDate,endDate);
+        searchPO(1,false,poNo,product,productName,model,startDate,endDate, type);
 
     }
 
-    private void searchPO(int pages,final boolean isLoadMore,String poNo,String product,String productName,String model,String startDate,String endDate){
-        Call<ActualWOHomeMasterRes> call = apiInterface.searchPo(20,pages,null,"asc",poNo,product,productName,model,startDate,endDate);
+    private void searchPO(int pages,final boolean isLoadMore,String poNo,String product,String productName,String model,String startDate,String endDate,String type){
+        Call<ActualWOHomeMasterRes> call = apiInterface.searchPo(20,pages,null,"asc",poNo,product,productName,model,startDate,endDate,type);
         call.enqueue(new Callback<ActualWOHomeMasterRes>() {
             @Override
             public void onResponse(Call<ActualWOHomeMasterRes> call, Response<ActualWOHomeMasterRes> response) {
@@ -376,6 +393,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         edtModel.setText("");
         edtStartDate.setText("");
         edtEndDate.setText("");
+        typeSelect="";
+        spinnertype.setSelection(0);
+
     }
 
     private class create extends AsyncTask<String, Void, String> {
@@ -478,6 +498,66 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         });
     }
 
+    private void getBomType() {
+        showDialog();
+        Call<List<GetBomTypeRes>> call = apiInterface.getBomType();
+        call.enqueue(new Callback<List<GetBomTypeRes>>() {
+            @Override
+            public void onResponse(Call<List<GetBomTypeRes>> call, Response<List<GetBomTypeRes>> response) {
+                if(response.isSuccessful()){
+                    Log.d("AAAA", response.body().toString());
+                    getBomTypeResList = response.body();
+                    getBomTypeResList.add(0,new GetBomTypeRes("","** Select Type **"));
+                    spinnertypebuild();
+
+                    dialog.dismiss();
+
+                }else {
+                    dialog.dismiss();
+                    AlertError.alertError("The server response error", getContext());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<GetBomTypeRes>> call, Throwable t) {
+                dialog.dismiss();
+                call.cancel();
+                AlertError.alertError(t.getMessage(), getContext());
+
+            }
+        });
+    }
+
+    private void spinnertypebuild() {
+        ArrayAdapter<GetBomTypeRes> adapter = new ArrayAdapter<GetBomTypeRes>(getActivity(),
+                R.layout.simple_spinner_item,
+                getBomTypeResList);
+
+        // Layout for All ROWs of Spinner.  (Optional for ArrayAdapter).
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnertype.setAdapter(adapter);
+
+        // When user select a List-Item.
+        spinnertype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                onItemSelectedHandler(parent, view, position, id);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void onItemSelectedHandler(AdapterView<?> adapterView, View view, int position, long id) {
+        Toast.makeText(getActivity(), "Selected Type: " + getBomTypeResList.get(position).getDt_nm() ,Toast.LENGTH_SHORT).show();
+        typeSelect = getBomTypeResList.get(position).getDt_cd();
+    }
+
     private void setListView() {
         dialog.dismiss();
         final LinearLayoutManager mLayoutManager;
@@ -523,7 +603,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             if(endDate.equals(Constants.END_DATE)){
                 endDate = null;
             }
-            searchPO(pages,true,edtPONo.getText().toString(),edtProduct.getText().toString(),edtProductName.getText().toString(),edtModel.getText().toString(),startDate,endDate);
+            searchPO(pages,true,edtPONo.getText().toString(),edtProduct.getText().toString(),edtProductName.getText().toString(),edtModel.getText().toString(),startDate,endDate, typeSelect);
         }else {
             getData(pages,true);
         }

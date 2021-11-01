@@ -22,22 +22,36 @@
             <TextView
                 android:id="@+id/no"
                 style="@style/textwhite"
-                android:text="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp" />
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:text="1" />
 
             <TextView
                 android:id="@+id/target"
                 style="@style/textwhite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/description"
+                android:layout_above="@+id/bomtype"
                 android:layout_below="@+id/no"
                 android:gravity="center"
-                android:textSize="24sp"
-                android:text="2000" />
+                android:text="2000"
+                android:textSize="24sp" />
 
+            <TextView
+                android:id="@+id/bomtype"
+                style="@style/textwhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/description"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:padding="4dp"
+                android:text="Bom" />
             <TextView
                 android:id="@+id/description"
                 style="@style/textwhite"

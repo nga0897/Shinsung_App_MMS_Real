@@ -40,10 +40,12 @@ public class ActualWOHomeMaster {
     @SerializedName("style_nm")
     private String styleNm;
 
+    @SerializedName("bom_type")
+    private String bomType;
 
     public ActualWOHomeMaster(int idActualpr, String atNo, String type, int totalTarget,
                               int target, String product, String remark, int processCount,
-                              int actual, int poRun, String mdCd, String styleNm) {
+                              int actual, int poRun, String mdCd, String styleNm,String bomType) {
         this.idActualpr = idActualpr;
         this.atNo = atNo;
         this.type = type;
@@ -56,6 +58,15 @@ public class ActualWOHomeMaster {
         this.poRun = poRun;
         this.mdCd = mdCd;
         this.styleNm = styleNm;
+        this.bomType = bomType;
+    }
+
+    public String getBomType() {
+        return bomType;
+    }
+
+    public void setBomType(String bomType) {
+        this.bomType = bomType;
     }
 
     public int getIdActualpr() {

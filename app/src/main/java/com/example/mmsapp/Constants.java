@@ -3,13 +3,13 @@ package com.example.mmsapp;
 public class Constants {
     /*Server URL*/
 
-//    THL server
-    public static final String BASE_URL_ONLINE = "http://shinsung.thlone.vn/";
-    public static final String BASE_URL_OFFLINE = "http://192.168.100.10:69/";
+////    THL server
+//    public static final String BASE_URL_ONLINE = "http://shinsung.thlone.vn/";
+//    public static final String BASE_URL_OFFLINE = "http://192.168.100.10:69/";
 
-//    //Real server
-//      public static final String BASE_URL_ONLINE = "http://messhinsungcntvina.com/";
-//      public static final String BASE_URL_OFFLINE = "http://192.168.1.243:84/";
+    //Real server
+      public static final String BASE_URL_ONLINE = "http://messhinsungcntvina.com/";
+      public static final String BASE_URL_OFFLINE = "http://192.168.1.243:84/";
 
     /*Using for SharedPreference*/
     public static final String PREF = "SharedPref";

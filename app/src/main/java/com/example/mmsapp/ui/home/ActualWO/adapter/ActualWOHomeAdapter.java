@@ -53,7 +53,7 @@ public class ActualWOHomeAdapter extends RecyclerView.Adapter<ActualWOHomeAdapte
 
     class NoteVH extends RecyclerView.ViewHolder {
         public CardView cardwo;
-        public TextView target, atno, model_wo, no, description, code_wo, name_wo;
+        public TextView target, atno, model_wo, no, description, code_wo, name_wo, bomtype;
 
         public NoteVH(View itemView, final OnItemClickListener listener) {
             super(itemView);
@@ -65,6 +65,7 @@ public class ActualWOHomeAdapter extends RecyclerView.Adapter<ActualWOHomeAdapte
             model_wo = itemView.findViewById(R.id.model_wo);
 
             description = itemView.findViewById(R.id.description);
+            bomtype = itemView.findViewById(R.id.bomtype);
             model_wo = itemView.findViewById(R.id.model_wo);
             name_wo = itemView.findViewById(R.id.name_wo);
             code_wo = itemView.findViewById(R.id.code_wo);
@@ -90,6 +91,7 @@ public class ActualWOHomeAdapter extends RecyclerView.Adapter<ActualWOHomeAdapte
             model_wo.setText(note.getMdCd());
             no.setText(getAdapterPosition() + 1 + "");
             description.setText(note.getRemark());
+            bomtype.setText(note.getBomType());
             code_wo.setText(note.getProduct());
             name_wo.setText(note.getStyleNm());
             if(note.getProcessCount()==note.getPoRun() && note.getProcessCount()>0){

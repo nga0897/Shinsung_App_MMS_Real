@@ -1,6 +1,7 @@
 package com.example.mmsapp.ui.home.ActualWO.api;
 
 import com.example.mmsapp.ui.home.ActualWO.api.response.ActualWOHomeMasterRes;
+import com.example.mmsapp.ui.home.ActualWO.api.response.GetBomTypeRes;
 import com.example.mmsapp.ui.home.ActualWO.api.response.GetDatawActualRes;
 import com.example.mmsapp.ui.home.Manufacturing.model.ActualWOdetailMaster;
 
@@ -52,7 +53,12 @@ public interface ActualWOAPI {
             @Query(value = "product_name",encoded = true) String productName,
             @Query(value = "model",encoded = true) String model,
             @Query(value = "regstart",encoded = true) String regStart,
-            @Query(value = "regend",encoded = true) String regEnd
+            @Query(value = "regend",encoded = true) String regEnd,
+            @Query(value = "bom_type",encoded = true) String bom_type
     );
+
+    @GET("DevManagement/GetBomType")
+    Call<List<GetBomTypeRes>> getBomType();
+
 
 }

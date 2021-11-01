@@ -11,144 +11,180 @@
         android:background="@color/colorbackgound"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <RelativeLayout
             android:id="@+id/layoutIcon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/imvDropDown"
-                android:src="@drawable/ic_expand_down"
-                android:layout_marginVertical="5dp"
-                android:layout_centerInParent="true"
-                android:layout_toLeftOf="@id/reloadPO"
                 android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:layout_centerInParent="true"
+                android:layout_marginVertical="5dp"
                 android:layout_marginLeft="80dp"
-                android:layout_height="24dp"/>
+                android:layout_toLeftOf="@id/reloadPO"
+                android:src="@drawable/ic_expand_down" />
+
             <ImageView
                 android:id="@+id/reloadPO"
-                android:visibility="invisible"
-                android:src="@drawable/ic_reset"
+                android:layout_width="70dp"
+                android:layout_height="24dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
-                android:layout_width="70dp"
-                android:layout_height="24dp"/>
+                android:src="@drawable/ic_reset"
+                android:visibility="invisible" />
         </RelativeLayout>
+
         <LinearLayout
             android:id="@+id/layoutSearchInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/layoutIcon"
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:visibility="gone"
-            android:layout_height="wrap_content">
+            android:visibility="gone">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
                 <EditText
                     android:id="@+id/edtPONo"
-                    android:hint="PO NO"
-                    android:textColor="@color/textcolorwhite"
-                    android:textColorHint="#D8D3D3"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_marginRight="2.5dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:maxLines="1"
+                    android:layout_marginRight="2.5dp"
+                    android:layout_weight="1"
                     android:background="@drawable/border_editext_search_po"
-                    android:layout_height="wrap_content"/>
+                    android:hint="PO NO"
+                    android:maxLines="1"
+                    android:textColor="@color/textcolorwhite"
+                    android:textColorHint="#D8D3D3" />
+
                 <EditText
                     android:id="@+id/edtProduct"
-                    android:hint="Product"
-                    android:textColor="@color/textcolorwhite"
-                    android:textColorHint="#D8D3D3"
-                    android:layout_weight="1"
-                    android:maxLines="1"
                     android:layout_width="0dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="2.5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
                     android:background="@drawable/border_editext_search_po"
-                    android:layout_height="wrap_content"/>
+                    android:hint="Product"
+                    android:maxLines="1"
+                    android:textColor="@color/textcolorwhite"
+                    android:textColorHint="#D8D3D3" />
             </LinearLayout>
+
             <LinearLayout
-                android:layout_marginVertical="5dp"
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:orientation="horizontal">
+
                 <EditText
                     android:id="@+id/edtProductName"
-                    android:hint="Product name"
-                    android:textColor="@color/textcolorwhite"
-                    android:textColorHint="#D8D3D3"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:maxLines="1"
-                    android:layout_marginRight="2.5dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginRight="2.5dp"
+                    android:layout_weight="1"
                     android:background="@drawable/border_editext_search_po"
-                    android:layout_height="wrap_content"/>
+                    android:hint="Product name"
+                    android:maxLines="1"
+                    android:textColor="@color/textcolorwhite"
+                    android:textColorHint="#D8D3D3" />
+
                 <EditText
                     android:id="@+id/edtModel"
-                    android:hint="Model"
-                    android:textColor="@color/textcolorwhite"
-                    android:textColorHint="#D8D3D3"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:maxLines="1"
-                    android:layout_marginRight="5dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="2.5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
                     android:background="@drawable/border_editext_search_po"
-                    android:layout_height="wrap_content"/>
+                    android:hint="Model"
+                    android:maxLines="1"
+                    android:textColor="@color/textcolorwhite"
+                    android:textColorHint="#D8D3D3" />
             </LinearLayout>
+
             <TextView
-                android:text="Reg date:"
-                android:textSize="8pt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
+                android:layout_weight="0.2"
+                android:text="Reg date:"
                 android:textColor="@color/textcolorwhite"
                 android:textColorHint="@color/textcolorwhite"
-                android:layout_weight="0.2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:textSize="8pt" />
+
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="2.5dp"
                 android:layout_marginBottom="5dp"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal">
+
                 <EditText
                     android:id="@+id/edtStartDate"
-                    android:hint="Start date"
-                    android:textColor="@color/textcolorwhite"
-                    android:textColorHint="#D8D3D3"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:maxLines="1"
-                    android:layout_marginRight="2.5dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:focusableInTouchMode="false"
+                    android:layout_marginRight="2.5dp"
+                    android:layout_weight="1"
                     android:background="@drawable/border_editext_search_po"
-                    android:layout_height="wrap_content"/>
+                    android:focusableInTouchMode="false"
+                    android:hint="Start date"
+                    android:maxLines="1"
+                    android:textColor="@color/textcolorwhite"
+                    android:textColorHint="#D8D3D3" />
+
                 <EditText
                     android:id="@+id/edtEndDate"
-                    android:hint="End date"
-                    android:textColor="@color/textcolorwhite"
-                    android:textColorHint="#D8D3D3"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_marginRight="5dp"
-                    android:focusableInTouchMode="false"
-                    android:maxLines="1"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="2.5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
                     android:background="@drawable/border_editext_search_po"
-                    android:layout_height="wrap_content"/>
+                    android:focusableInTouchMode="false"
+                    android:hint="End date"
+                    android:maxLines="1"
+                    android:textColor="@color/textcolorwhite"
+                    android:textColorHint="#D8D3D3" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2.5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spinnertype"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_editext_search_po"
+                    android:focusableInTouchMode="false"
+                    android:textColor="@color/textcolorwhite"
+                    android:popupBackground="#333"
+                    android:textColorHint="#D8D3D3" />
+
+            </LinearLayout>
+
             <Button
                 android:id="@+id/btnSearch"
-                android:text="Search"
-                android:textAllCaps="false"
-                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Search"
+                android:textAllCaps="false" />
 
         </LinearLayout>
     </RelativeLayout>
