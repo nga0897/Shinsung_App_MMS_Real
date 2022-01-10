@@ -199,7 +199,7 @@ public class MappingDetailActivity extends AppCompatActivity {
                     h2.setError(null);
 
                     if (vt_scan.equals("MT")) {
-                        mappingMaterial(mtCd,containerCode.getText().toString(),idActual,"");
+                        mappingMaterial(mtCd,containerCode.getText().toString(),idActual,""); //Input, MT
                         Log.e("Mappingmaterial", webUrl + "ActualWO/insertw_material_mping?mt_cd=" +
                                 mtCd +
                                 "&mt_mapping=" +
@@ -210,7 +210,7 @@ public class MappingDetailActivity extends AppCompatActivity {
                                 "");
                     } else {
 
-                        mappingMaterial(mtCd,"",idActual,containerCode.getText().toString());
+                        mappingMaterial(mtCd,"",idActual,containerCode.getText().toString()); // Input, no MT
                         Log.e("Mappingmaterial", webUrl + "ActualWO/insertw_material_mping?mt_cd=" +
                                 mtCd +
                                 "&mt_mapping=" +
@@ -264,7 +264,7 @@ public class MappingDetailActivity extends AppCompatActivity {
                             idActual +
                             "&bb_no=" +
                             "");*/
-                    mappingMaterial(mtCd,result.getContents(),idActual,"");
+                    mappingMaterial(mtCd,result.getContents(),idActual,""); //scan mt
                 } else {
 //                    new Mappingmaterial().execute(webUrl + "ActualWO/insertw_material_mping?mt_cd=" +
 //                            mtCd +
@@ -274,7 +274,7 @@ public class MappingDetailActivity extends AppCompatActivity {
 //                            idActual +
 //                            "&bb_no=" +
 //                            result.getContents());
-                    mappingMaterial(mtCd,"",idActual,result.getContents());
+                    mappingMaterial(mtCd,"",idActual,result.getContents()); //scan no MT
                 }
             }
         }

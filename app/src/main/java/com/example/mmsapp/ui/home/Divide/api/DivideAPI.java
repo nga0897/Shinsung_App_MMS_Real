@@ -29,13 +29,13 @@ public interface DivideAPI {
 
     @GET("ActualWO/Decevice_sta")
     Call<DeceviceStaRes> divideSta(
-            @Query(value = "mt_cd",encoded = true) String mtCd,
+            @Query(value = "mt_cd"/*,encoded = true*/) String mtCd,
             @Query(value = "number_dv",encoded = true) String numberDv
     );
 
     @GET("ActualWO/ds_mapping_sta")
     Call<List<DivDetailMaster>> dsMappingSta(
-            @Query(value = "mt_cd",encoded = true) String mtCd,
+            @Query(value = "mt_cd"/*,encoded = true*/) String mtCd,
             @Query(value = "_search",encoded = true) boolean search,
             @Query(value = "nd",encoded = true) String nd,
             @Query(value = "rows",encoded = true) int rows,
@@ -61,7 +61,7 @@ public interface DivideAPI {
 
     @GET("ActualWO/destroyDevide")
     Call<BaseMessageResponse> destroyDivide(
-            @Query(value = "mt_cd",encoded = true) String mtCd
+            @Query(value = "mt_cd"/*,encoded = true*/) String mtCd
     );
 
 }

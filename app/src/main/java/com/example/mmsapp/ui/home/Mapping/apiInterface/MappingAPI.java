@@ -30,7 +30,7 @@ public interface MappingAPI {
 
     @GET("ActualWO/check_update_grty")
     Call<CheckUpdateGrtyRes> checkUpdateGrty(
-            @Query(value = "mt_cd",encoded = true) String mtCd,
+            @Query(value = "mt_cd"/*,encoded = true*/) String mtCd,
             @Query(value = "value",encoded = true) String value,
             @Query(value = "wmtid",encoded = true) int wmtId
     );
@@ -45,7 +45,7 @@ public interface MappingAPI {
 
     @GET("ActualWO/ds_mapping_w")
     Call<List<MappingDetailMaster>> dsMappingW(
-            @Query(value = "mt_cd",encoded = true) String mtCd
+            @Query(value = "mt_cd"/*,encoded = true*/) String mtCd
     );
 
     @GET("ActualWO/Finish_back")
@@ -72,7 +72,7 @@ public interface MappingAPI {
 
     @GET("ActualWO/insertw_material_mping")
     Call<BaseMessageResponse> insertWMaterialMapping(
-            @Query(value = "mt_cd",encoded = true) String mtCd,
+            @Query(value = "mt_cd"/*,encoded = true*/) String mtCd,
             @Query(value = "mt_mapping") String mtMapping,
             @Query(value = "id_actual",encoded = true) String idActual,
             @Query(value = "bb_no",encoded = true) String bbNo

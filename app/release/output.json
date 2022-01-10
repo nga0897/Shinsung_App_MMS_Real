@@ -11,10 +11,10 @@
       "type": "SINGLE",
       "filters": [],
       "properties": [],
-      "versionCode": 20211029,
-      "versionName": "20211029",
+      "versionCode": 20220110,
+      "versionName": "20220110",
       "enabled": true,
-      "outputFile": "mmsapp-v20211029-release.apk"
+      "outputFile": "mmsapp-v20220110-release.apk"
     }
   ]
 }
